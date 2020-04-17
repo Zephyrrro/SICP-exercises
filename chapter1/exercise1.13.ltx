@@ -1,0 +1,72 @@
+假设 $Fib(n) = \frac{\phi^n - \gamma^n}{\sqrt{5}}$ 成立，
+则有 $Fib(1) = \frac{\phi - \gamma}{\sqrt{5}} = 1$
+将 $\phi = \frac{1 + \sqrt{5}}{2}$ 代入可解得：$\gamma = \frac{1 - \sqrt{5}}{2}$
+将 $Fib(n) = Fib(n-1) + Fib(n-2)$ 展开:
+\begin{align*}
+& \frac{\phi^n - \gamma^n}{\sqrt{5}} = \frac{\phi^{n-1} - \gamma^{n-1}}{\sqrt{5}} + \frac{\phi^{n-2} - \gamma^{n-2}}{\sqrt{5}}
+\\
+& \phi^n - \gamma^n = (\phi^{n-1} - \gamma^{n-1}) + (\phi^{n-2} - \gamma^{n-2})
+\\
+& \phi^n - \gamma^n = \phi^n (\frac{1}{\phi} + \frac{1}{\phi^2}) + \gamma^n (\frac{1}{\gamma} + \frac{1}{\gamma^2})
+\end{align*}
+
+
+将 $\phi = \frac{1 + \sqrt{5}}{2}$ 和 $\gamma = \frac{1 - \sqrt{5}}{2}$ 代入上式，右边等式通分后可得：
+$\phi^n - \gamma^n = \phi^n - \gamma^n$ ，即 $Fib(n) = \frac{\phi^n - \gamma^n}{\sqrt{5}}$ 成立得证。
+变式可得：
+\begin{align*}
+  Fib(n) = \frac{\phi^n}{\sqrt{5}} - \frac{\gamma^n}{\sqrt{5}} \\
+  Fib(n) + \frac{\gamma^n}{\sqrt{5}} = \frac{\phi^n}{\sqrt{5}}
+\end{align*}
+
+
+下面考虑 $\frac{\gamma^n}{\sqrt{5}} = \frac{(\frac{1 - \sqrt{5}}{2})^n}{\sqrt{5}}$ 的粗略大小范围：
+\begin{align*}
+  由 2 < & \sqrt{5} < 3 可得：\\
+  & -3 < -\sqrt{5} < -2 \\
+  & -2 < 1 - \sqrt{5} < -1 \\
+  & -1 < \frac{1 - \sqrt{5}}{2} < - \frac{1}{2} \\
+  & (-1)^n < (\frac{1 - \sqrt{5}}{2})^n < (- \frac{1}{2})^n
+\end{align*}
+可得：
+\begin{cases}
+  -1 < (\frac{1 - \sqrt{5}}{2})^n < -(\frac{1}{2})^n &  n = 2k+1, \; k = 0, 1, 2... 
+  \\\
+  1 < (\frac{1 - \sqrt{5}}{2})^n < (\frac{1}{2})^n & n = 2k, \; k = 0, 1, 2...
+\end{cases}
+
+
+当 $n = 2k+1$ 时，有
+\begin{align*}
+  & -1 < (\frac{1 - \sqrt{5}}{2})^n < (- \frac{1}{2})^n \\
+  \Rightarrow & -\frac{1}{\sqrt{5}} < \frac{(\frac{1 - \sqrt{5}}{2})^n}{\sqrt{5}} < \frac{-(\frac{1}{2})^n}{\sqrt{5}} \\
+  & 将 \sqrt{5} 的粗略值代入可得：\\
+  & -\frac{1}{2} < \frac{(\frac{1 - \sqrt{5}}{2})^n}{\sqrt{5}} < -\frac{1}{5} \; 在n为奇数时恒成立
+\end{align*}
+同理可得，$n = 2k$ 时，$\frac{1}{5} < \frac{(\frac{1 - \sqrt{5}}{2})^n}{\sqrt{5}} < \frac{1}{2}$
+
+
+下面证明 $Fib(n)是最接近\frac{\phi^n}{\sqrt{5}}的整数$：
+\begin{align*}
+  & 易得：
+  \begin{cases}
+    0 < \frac{\gamma^n}{\sqrt{5}} < 1 & n = 2k, \; k = 0, 1, 2...
+    \\\
+    -1 < \frac{\gamma^n}{\sqrt{5}} < 0 & n = 2k+1, \; k = 0, 1, 2...
+  \end{cases}
+  \\
+  & 不等式同时加Fib(n)，有 \\
+  &
+  \begin{cases}
+    Fib(n) < Fib(n) + \frac{\gamma^n}{\sqrt{5}} < Fib(n) + 1 \Rightarrow Fib(n) < \frac{\phi^n}{\sqrt{5}} < Fib(n) + 1 & n为偶数
+    \\\
+    Fib(n) - 1 < Fib(n) + \frac{\gamma^n}{\sqrt{5}} < Fib(n) \Rightarrow Fib(n) - 1 < \frac{\phi^n}{\sqrt{5}} < Fib(n) & n为奇数
+  \end{cases}
+  \\
+  & 故 Fib(n)或Fib(n)\pm1为最接近 \frac{\phi^n}{\sqrt{5}} 的整数，考虑到：\frac{\phi^n}{\sqrt{5}} - Fib(n) = \frac{\gamma^n}{\sqrt{5}}，因此：\\
+  & n为偶数时，\frac{1}{5} < \frac{\phi^n}{\sqrt{5}} - Fib(n) < \frac{1}{2}，故此时 \frac{\phi^n}{\sqrt{5}} 更接近Fib(n) \\
+  & n为奇数时，-\frac{1}{2} < \frac{\phi^n}{\sqrt{5}} - Fib(n) < -\frac{1}{5}，\frac{\phi^n}{\sqrt{5}} 同样更接近Fib(n)
+\end{align*}
+
+
+综上，$Fib(n)是最接近\frac{\phi^n}{\sqrt{5}}的整数$
